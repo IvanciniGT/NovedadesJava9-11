@@ -309,3 +309,54 @@ Es una colección de estándares acerca de cómo usar JAVA en entornos empresari
 
 .scala  --> compilador ---> .class (bytecode) ---> JVM
 .kt     --->
+
+---
+
+# MAVEN
+
+Herramienta de automatización de tareas habituales en el desarrollo de software (JAVA):
+- Compilar
+- Empaquetar
+- Ejecutar tests
+- Mandar código a SonarQube
+- Gestionar las dependencias de mi proyecto
+
+## Estructura de un proyecto MAVEN
+
+proyecto/
+    src/
+        main/
+            java/
+            resources/
+        test/
+            java/
+            resources/
+    target/
+         classes/
+         test-classes/
+    pom.xml                     Es el archivo de configuración de maven para mi proyecto
+
+## Archivo pom.xml
+
+- Coordenadas del proyecto: groupId, artifactId, version
+- Plugins. Maven no hace nada... más que solicitar a otros (plugins) tareas (goals) que deben ejecutar.
+  - Compilar -> maven-compiler-plugin
+  - Empaquetar -> maven-jar-plugin
+  - Ejecutar tests -> maven-surefire-plugin
+- Dependencias. Librerías adicionales que mi proyecto necesita para compilar, ejecutar tests, etc.
+- Propiedades de configuración -> que normalmente consumen los plugins.
+
+Al añadir nuevos plugins (maven por defecto ya viene con unos 10 preconfigurados), se añaden nuevas tareas (goals) que podemos ejecutar a través de maven.
+
+## Goals por defecto:
+
+clean               Borra la carpeta target
+compile             Compilar con javac lo que tengo en src/main/java... generando clases que deja en target/classes
+                    Copiar los archivos que tengo en src/main/resources... en target/classes
+test-compile        Compilar con javac lo que tengo en src/test/java... generando clases que deja en target/test-classes
+                    Copiar los archivos que tengo en src/test/resources... en target/test-classes
+test                Ejecutar las clases de pruebas JUNIT que tengo en la carpeta target/test-classes
+package             Empaquetar el contenido de target/classes en un jar (war, ear, o nada), para generar el artefacto de mi proyecto.
+                    El artefacto se deja en target/<artifactId>-<version>.jar (war, ear, o nada)
+install             Copia el artefacto generado en el repositorio local de maven (por defecto ~/.m2/repository) para que 
+                    pueda ser usado por otros proyectos maven.
