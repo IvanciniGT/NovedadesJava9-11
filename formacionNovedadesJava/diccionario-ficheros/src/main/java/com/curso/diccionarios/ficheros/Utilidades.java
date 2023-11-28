@@ -1,8 +1,14 @@
 package com.curso.diccionarios.ficheros;
 
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public interface Utilidades {
 
@@ -37,9 +43,38 @@ public interface Utilidades {
         return Math.min(a, Math.min(b, c));
     }
 
+    private static Optional<URL> getRutaDeFicheroDePalabras(String idioma) {
+        return Optional.ofNullable(Utilidades.class.getClassLoader().getResource("diccionarios/diccionario." + idioma + ".txt"));
+    }
+
     static boolean existeFicheroDeIdioma(String idioma) {
+        return getRutaDeFicheroDePalabras(idioma).isPresent();
     }
 
     static Optional<Map<String, List<String>>> leerFicheroDeIdioma(String idioma) {
+        Optional<URL> potencialRutaDeFicheroDePalabras = getRutaDeFicheroDePalabras(idioma);
+        if(potencialRutaDeFicheroDePalabras.isPresent()) {
+            // Tengo fichero... me toca leerlo
+            try {
+                String contenido = Files.readString(Path.of(potencialRutaDeFicheroDePalabras.get().getPath())); // JAVA 11: Clase Files. Métodos readString y writeString
+                return Optional.of(contenido.lines() // JAVA 11. Método lines en String // Partirlo en lineas de texto
+                        .parallel() // Para cada linea en paralelo
+                        .filter( linea -> !linea.isBlank() ) // JAVA 11. isBlank en String.  Si la linea no está en blanco
+                        .map( linea -> linea.split("=") )// Separar la palabra de los significados, por el carácter =
+                        .collect( Collectors.toMap(
+                                arrayPartes -> normalizar(arrayPartes[0]), // La palabra normalizada
+                                arrayPartes -> List.of(arrayPartes[1].split("\\|")), // Los significados separados por el carácter |
+                                (lista1DeSignificados, lista2DeSignificados) -> { // Si hay dos palabras iguales, se juntan las 2 listas de significados en 1
+                                    return Stream.concat(lista1DeSignificados.stream(), lista2DeSignificados.stream()).collect(Collectors.toList());
+                                }
+                        ) ));
+                // Separar los significados por el carácter |
+                // Montar un Map<String, List<String>> con la palabra y los significados
+            }catch (IOException e){
+                // Esto implicaría un bug en el fichero del diccionario
+                e.printStackTrace(); // Esto habría que llevarlo a un log
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -33,6 +33,6 @@ public class SuministradorDeDiccionariosDesdeFicheros implements SuministradorDe
             }*/
             palabrasDelDiccionario.ifPresent(palabrasConSignificados -> cacheDeDiccionario.put(idioma, new DiccionarioDesdeFicheros(idioma, palabrasConSignificados)));
         }
-        return Optional.of(cacheDeDiccionario.get(idioma));
+        return Optional.ofNullable(cacheDeDiccionario.get(idioma));
     }
 }
