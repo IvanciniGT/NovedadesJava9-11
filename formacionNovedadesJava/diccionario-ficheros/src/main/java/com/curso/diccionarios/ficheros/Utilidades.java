@@ -1,5 +1,9 @@
 package com.curso.diccionarios.ficheros;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 public interface Utilidades {
 
     int DISTANCIA_MAXIMA_ADMITIDA = 2;
@@ -33,4 +37,9 @@ public interface Utilidades {
         return Math.min(a, Math.min(b, c));
     }
 
+    static boolean existeFicheroDeIdioma(String idioma) {
+    }
+
+    static Optional<Map<String, List<String>>> leerFicheroDeIdioma(String idioma) {
+    }
 }
