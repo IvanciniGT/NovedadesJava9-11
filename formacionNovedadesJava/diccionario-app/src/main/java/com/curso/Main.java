@@ -2,6 +2,8 @@ package com.curso;
 
 import com.curso.diccionarios.SuministradorDeDiccionarios;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ServiceLoader;
 
 public class Main {
@@ -23,12 +25,24 @@ public class Main {
         for(SuministradorDeDiccionarios suministradorDeDiccionarios : suministradoresDeDiccionarios) {
             tengoAlMenosUnSuministradorDeDiccionarios = true;
             if (suministradorDeDiccionarios.tienesDiccionarioDe(idioma)) {
-                var diccionario = suministradorDeDiccionarios.getDiccionario(idioma).get(); // Java 10
+                var diccionario = suministradorDeDiccionarios.getDiccionario(idioma).orElseThrow(); // Java 10 (var... y Optional.orElseThrow)
+
+                List<String> nuevosSignificados = new ArrayList<>();
+                nuevosSignificados.add("animal de compañía");
+                // Persona 1
+                diccionario.nuevaPalabraTemporal("archilococo", nuevosSignificados);
+                // Persona 2
+                // Ahora no. Devuelvo una copia inmutable de los datos: diccionario.getSignificados("archilococo").ifPresent(List::clear);
+                // Persona 3
+                diccionario.getSignificados("archilococo").ifPresent(significados ->
+                        System.out.println("Significados de archilococo: " + significados));
+
+
                 if (diccionario.existe(palabra)) {
                     System.out.println("La palabra " + palabra + " existe en el diccionario");
                     var significados = diccionario.getSignificados(palabra);
                     System.out.println("Significados:");
-                    significados.get().forEach(significado -> System.out.println(" - " + significado));
+                    significados.orElseThrow().forEach(significado -> System.out.println(" - " + significado)); // JAva 10. Optional.orElseThrow
                 } else {
                     System.out.println("La palabra " + palabra + " no existe en el diccionario");
                     System.out.println("Palabras similares:");

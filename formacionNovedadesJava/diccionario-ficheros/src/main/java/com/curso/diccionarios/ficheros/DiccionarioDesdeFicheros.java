@@ -1,6 +1,7 @@
 package com.curso.diccionarios.ficheros;
 
 import com.curso.diccionarios.Diccionario;
+import lombok.NonNull;
 
 import java.util.Comparator;
 import java.util.List;
@@ -13,7 +14,7 @@ public class DiccionarioDesdeFicheros implements Diccionario {
     private final Map<String, List<String>> palabras;
     private final String idioma;
 
-    public DiccionarioDesdeFicheros(String idioma, Map<String, List<String>> palabras) {
+    public DiccionarioDesdeFicheros(@NonNull String idioma, @NonNull Map<String, List<String>> palabras) {
         this.idioma = idioma;
         this.palabras = palabras;
     }
@@ -24,17 +25,23 @@ public class DiccionarioDesdeFicheros implements Diccionario {
     }
 
     @Override
-    public boolean existe(String palabra) {
+    public boolean existe(@NonNull String palabra) {
         return palabras.containsKey(Utilidades.normalizar(palabra));
+    }
+    @Override
+    public void nuevaPalabraTemporal(@NonNull String palabra, @NonNull List<String> significados) {
+        palabras.put(Utilidades.normalizar(palabra), List.copyOf(significados));
+        // Java 10. En todas las interfaces de Colecciones (List, Set, Map...) se añade el método copyOf
+        // para crear una copia inmutable de la colección
     }
 
     @Override
-    public Optional<List<String>> getSignificados(String palabra) { // Java 8: Optional
+    public Optional<List<String>> getSignificados(@NonNull String palabra) { // Java 8: Optional
         return Optional.ofNullable(palabras.get(Utilidades.normalizar(palabra)));
     }
 
     @Override
-    public List<String> getPalabrasSimilaresA(String palabra) {
+    public List<String> getPalabrasSimilaresA(@NonNull String palabra) {
         // Normalizar la palabra
         String normalizada = Utilidades.normalizar(palabra);
         return palabras.keySet()                   // Coge las palabras (sin significados)

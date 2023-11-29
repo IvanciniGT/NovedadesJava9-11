@@ -63,7 +63,8 @@ public interface Utilidades {
                         .map( linea -> linea.split("=") )// Separar la palabra de los significados, por el carácter =
                         .collect( Collectors.toMap(
                                 arrayPartes -> normalizar(arrayPartes[0]), // La palabra normalizada
-                                arrayPartes -> List.of(arrayPartes[1].split("\\|")), // Los significados separados por el carácter |
+                                arrayPartes -> List.of(arrayPartes[1].split("\\|")), // Los significados separados por el carácter | // Java 9
+                                // En Java 9 se añaden los métodos of en List, Set y Map para crear colecciones inmutables
                                 (lista1DeSignificados, lista2DeSignificados) -> { // Si hay dos palabras iguales, se juntan las 2 listas de significados en 1
                                     return Stream.concat(lista1DeSignificados.stream(), lista2DeSignificados.stream()).collect(Collectors.toList());
                                 }

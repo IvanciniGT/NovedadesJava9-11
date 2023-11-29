@@ -12,4 +12,5 @@ module diccionario.ficheros {
     // y yo estoy en el classpath, la JVM genere una instancia de esta clase y se la devuelva
     // Sin que el otro módulo tenga que saber nada de mí ->
     //         Componentes desacoplados / Respeto al principio de inversión de dependencias
+    requires lombok;
 }
