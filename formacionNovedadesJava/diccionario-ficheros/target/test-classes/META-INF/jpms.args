@@ -1,4 +1,0 @@
---patch-module
-diccionario.ficheros=_
---add-reads
-diccionario.ficheros=ALL-UNNAMED
