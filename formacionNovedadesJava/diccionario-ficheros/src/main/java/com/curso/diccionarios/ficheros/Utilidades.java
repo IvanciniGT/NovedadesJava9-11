@@ -44,7 +44,7 @@ public interface Utilidades {
     }
 
     private static Optional<URL> getRutaDeFicheroDePalabras(String idioma) {
-        return Optional.ofNullable(Utilidades.class.getClassLoader().getResource("diccionarios/diccionario." + idioma + ".txt"));
+        return Optional.ofNullable(Utilidades.class.getClassLoader().getResource("diccionario." + idioma + ".txt"));
     }
 
     static boolean existeFicheroDeIdioma(String idioma) {

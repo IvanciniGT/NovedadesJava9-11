@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Bienvenido al diccionario");
 
-        if(args.length == 2) {
+        if(args.length != 2) {
             System.out.println("Debes indicar el idioma del diccionario y la palabra a buscar");
             System.out.println("Ejemplo: java -jar diccionario.jar ES hola");
             System.exit(1);
@@ -17,8 +17,11 @@ public class Main {
         String idioma = args[0];
         String palabra = args[1];
 
+        boolean tengoAlMenosUnSuministradorDeDiccionarios = false;
+
         Iterable<SuministradorDeDiccionarios> suministradoresDeDiccionarios = ServiceLoader.load(SuministradorDeDiccionarios.class);
         for(SuministradorDeDiccionarios suministradorDeDiccionarios : suministradoresDeDiccionarios) {
+            tengoAlMenosUnSuministradorDeDiccionarios = true;
             if (suministradorDeDiccionarios.tienesDiccionarioDe(idioma)) {
                 var diccionario = suministradorDeDiccionarios.getDiccionario(idioma).get(); // Java 10
                 if (diccionario.existe(palabra)) {
@@ -35,9 +38,13 @@ public class Main {
                 System.exit(0);
             }
         }
-        // No he encontrado el diccionario en ninguno de los suministradores que tengo
-        System.out.println("Lo siento, pero no tengo el diccionario de " + idioma);
-        System.out.println("Gracias por usar el diccionario.");
+        if(!tengoAlMenosUnSuministradorDeDiccionarios) {
+            System.out.println("Lo siento, pero no tengo ningún suministrador de diccionarios");
+            System.out.println("Gracias por usar el diccionario.");
+        }else{
+            System.out.println("Lo siento, pero no tengo el diccionario de " + idioma);
+            System.out.println("Gracias por usar el diccionario.");
+        }
         System.exit(1);
     }
 }

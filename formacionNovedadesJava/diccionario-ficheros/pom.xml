@@ -15,7 +15,6 @@
             <groupId>com.curso.diccionarios</groupId>
             <artifactId>diccionario-api</artifactId>
             <version>0.0.1</version>
-            <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
