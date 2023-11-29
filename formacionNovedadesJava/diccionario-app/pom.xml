@@ -17,6 +17,7 @@
             <artifactId>diccionario-api</artifactId>
             <version>0.0.1</version>
         </dependency>
+        <!-- Esta la vamos a quitar -->
         <dependency>
             <groupId>com.curso.diccionarios</groupId>
             <artifactId>diccionario-ficheros</artifactId>
