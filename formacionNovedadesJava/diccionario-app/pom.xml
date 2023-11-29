@@ -9,14 +9,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <groupId>com.curso</groupId>
     <artifactId>diccionario-app</artifactId>
-
-    <properties>
-        <maven.compiler.source>20</maven.compiler.source>
-        <maven.compiler.target>20</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>

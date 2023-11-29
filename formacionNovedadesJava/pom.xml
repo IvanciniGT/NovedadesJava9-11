@@ -35,5 +35,13 @@
 
     <!--Definición de los módulos que componen el proyecto-->
     <!--Plugins-->
-
+    <build>
+        <plugins>
+            <!-- actualizar el plugin de compilación de maven para soportar archivos module-info.java -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
