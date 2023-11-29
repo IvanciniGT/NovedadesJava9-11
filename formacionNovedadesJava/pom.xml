@@ -22,6 +22,7 @@
     <modules>
         <module>diccionario-api</module>
         <module>diccionario-ficheros</module>
+        <module>diccionario-app</module>
     </modules>
     <packaging>pom</packaging>
 

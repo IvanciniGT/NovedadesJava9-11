@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="diccionario-ficheros" />
+        <module name="diccionario-app" />
         <module name="diccionario-api" />
       </profile>
     </annotationProcessing>
