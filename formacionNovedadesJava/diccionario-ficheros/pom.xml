@@ -24,7 +24,15 @@
             <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- actualizar el plugin surefire para que reconozca las clases de JUnit 5 -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
