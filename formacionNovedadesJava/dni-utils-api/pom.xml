@@ -8,7 +8,7 @@
         <artifactId>sistema</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>dni-utils</artifactId>
+    <artifactId>dni-utils-api</artifactId>
 
     <dependencies>
         <dependency>

@@ -23,7 +23,8 @@
         <module>diccionario-api</module>
         <module>diccionario-ficheros</module>
         <module>diccionario-app</module>
-        <module>dni-utils</module>
+        <module>dni-utils-api</module>
+        <module>dni-util-impl</module>
     </modules>
     <packaging>pom</packaging>
 

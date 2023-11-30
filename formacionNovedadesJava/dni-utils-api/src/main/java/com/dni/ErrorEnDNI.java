@@ -1,8 +1,8 @@
 package com.dni;
 
 public enum ErrorEnDNI {
+    FALTA_LETRA,
     LETRA_INCORRECTA,
-    NUMERO_INCORRECTO,
     SEPARADOR_INCORRECTO,
     SIGNOS_DE_PUNTOS_INCORRECTOS,
     DNI_NULO,

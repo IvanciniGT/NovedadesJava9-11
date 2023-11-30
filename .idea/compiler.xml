@@ -8,9 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="diccionario-ficheros" />
+        <module name="dni-util-impl" />
+        <module name="dni-utils-api" />
         <module name="diccionario-app" />
         <module name="diccionario-api" />
-        <module name="dni-utils" />
       </profile>
     </annotationProcessing>
   </component>
