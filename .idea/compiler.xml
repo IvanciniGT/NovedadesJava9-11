@@ -10,6 +10,7 @@
         <module name="diccionario-ficheros" />
         <module name="diccionario-app" />
         <module name="diccionario-api" />
+        <module name="dni-utils" />
       </profile>
     </annotationProcessing>
   </component>
