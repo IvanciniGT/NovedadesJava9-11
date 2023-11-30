@@ -1,0 +1,13 @@
+String nombre = "Ivan";
+System.out.println(nombre)
+List<Integer> numeros = List.of(1,2,3,4);
+double volumenDeUnPrisma(double base1, double base2, double altura){
+    return altura * areaDeLaBase(base1,base2);
+}
+volumenDeUnPrisma(1,2,3);
+double areaDeLaBase(double lado1, double lado2) {
+    return lado1*lado2;
+}
+System.out.println(volumenDeUnPrisma(1,2,3));
+
+/exit

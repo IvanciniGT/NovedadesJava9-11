@@ -1,5 +1,7 @@
 package com.curso.diccionarios.ficheros;
 
+import lombok.NonNull;
+
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -7,6 +9,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -77,5 +80,13 @@ public interface Utilidades {
             }
         }
         return Optional.empty();
+    }
+
+    public static void ejemploTontoDeSintaxisLambdaConVar(){
+                                                // Si tuviera un tipo Map<String,List<String>> es demasiado pa'l body
+        Function<Integer, Integer> funcion = (@NonNull Integer numero) -> numero * 2; // Java 8
+        //Function<Integer, Integer> funcion2 = (@NonNull numero) -> numero * 2; // AQUI NO CUELA EL USO DE ANOTACIONES... sin dar el tipo
+        Function<Integer, Integer> funcion3 = (@NonNull var numero) -> numero * 2; // AQUI SI CUELA GRACIAS AL VAR : Java 11
+
     }
 }

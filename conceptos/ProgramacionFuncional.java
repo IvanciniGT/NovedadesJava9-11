@@ -56,7 +56,8 @@ public class ProgramacionFuncional {
             return numero2 * 3;
         };
         Function<Integer, Integer> miOtraOperacion4 = numero2 -> numero2 * 3;
-        
+        Function<Integer, Integer> miOtraOperacion5 = (var numero2) -> numero2 * 3;
+
         imprimirResultadoDeOperacion(miOtraOperacion, 7);
         imprimirResultadoDeOperacion(num -> num * 9, 7);  // Me facilita la legibilidad... El no tener que ir a otro sitio a ver que hace la función
         imprimirResultadoDeOperacion(pf::porNueve, 7);
